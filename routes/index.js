@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+require('dotenv').load();
 var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 /* GET home page. */
@@ -15,7 +16,7 @@ router.post('/', function(req, res, next) {
     to: process.env.TWILIO_TEL_TO,
     from: process.env.TWILIO_TEL_FROM,
     timeout: 60,
-    statusCallback: 'https://tranquil-dawn-17465.herokuapp.com/statusCallBack/' + req.body.socketId,
+    statusCallback: 'https://' + process.env.HEROKU_APP_NAME + '.herokuapp.com/statusCallBack/' + req.body.socketId,
     statusCallbackMethod: "GET",
     statusCallbackEvent: ["ringing", "answered", "completed"]
   }, function(err, call) {
