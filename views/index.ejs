@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Twilio Status Callback Sample -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>-</title>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+       $(function() {
+            var socketId;
+            // socket通信が開始される
+            var socket = io();
+            socket.on('connect', function(){
+                socketId = socket.id;
+            });
+            socket.on('statusCallBack', function(d){
+                document.getElementById("statusCallBack").innerHTML = d;
+            });
+            $("#tel").click(function(){
+                $.ajax('/',
+                    {
+                        type: 'post',
+                        data: {
+                            "socketId": socketId
+                        }
+                    }
+                )
+            });
+       })
+    </script>
+</head>
+<body>
+    <button type="button" id="tel">発信</button>
+    <div id="statusCallBack">Test</div>
+</body>
+</html>
