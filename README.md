@@ -1,0 +1,2 @@
+# twilio-statuscallback-sample
+Twilioから電話を掛けて通話状態をリアルタイムで画面表示するサンプル
