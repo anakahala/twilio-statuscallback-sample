@@ -17,8 +17,8 @@
             socket.on('connect', function(){
                 socketId = socket.id;
             });
-            socket.on('statusCallBack', function(d){
-                document.getElementById("statusCallBack").innerHTML = d;
+            socket.on('statusCallBack', function(status){
+                document.getElementById("statusCallBack").innerHTML = status;
             });
             $("#tel").click(function(){
                 $.ajax('/',
